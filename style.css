@@ -1,0 +1,72 @@
+/* General page setup */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* Three.js canvas */
+canvas.threejs {
+ /* display: block;
+  top: 0;
+  left: 0;*/
+  position: absolute;
+  inset:0;
+  z-index: 1;
+}
+
+/* Overlay screen before experience starts */
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+#overlay h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+
+#overlay p {
+  max-width: 500px;
+  margin-bottom: 1.5em;
+  padding: 0 20px;
+}
+
+/* Start button style */
+#startButton {
+  font-size: 1.2em;
+  padding: 0.8em 2em;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background 0.3s ease;
+}
+
+#startButton:hover {
+  background-color: #dddddd;
+}
+
+.subtitle {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  pointer-events: none;
+  z-index: 30;
+}
