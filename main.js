@@ -28,11 +28,11 @@ loader.load( 'model/blend_boots3.glb', function ( gltf ) {
 } );
 
 //lighting
-const ambienceLights = new THREE.AmbientLight(
+const ambientLights = new THREE.AmbientLight(
     0x296887,
-    1
+    0.2
 );
-scene.add(ambienceLights);
+scene.add(ambientLights);
 
 
 const light = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -78,7 +78,7 @@ const audioLoader = new THREE.AudioLoader();
 audioLoader.load( 'model/boots_audio_finalfinal.mp3', function( buffer ) {
 	sound.setBuffer( buffer );
 	sound.setLoop( false );
-	sound.setVolume( 1.5 );
+	sound.setVolume( 3);
 	});
 
 //subtitles
@@ -151,6 +151,7 @@ function updateSubtitles() {
   subtitleBox.textContent = activeLine ? activeLine.text : '';
 }
 
+let cnst = 0;
 
 //render
 
@@ -160,16 +161,28 @@ const renderloop = () => {
  
   
  if (sound.isPlaying === true){
+   
+   cnst -= speed * delta;
     controls.object.position.x -= speed * delta;
-    //controls.pointerSpeed = 0.5
+    controls.pointerSpeed = 0.3
     //const chance = Math.random() < 0.5 ? 0 : 1;
-    //if (clock.getElapsedTime() >= 100) {}
+    if (clock.getElapsedTime() >= 78) {     
+      controls.pointerSpeed = 2;
+      light.intensity =  (Math.cos(0.2*cnst))**2;
+      if (clock.getElapsedTime() >= 120){light.intensity = 2* (Math.cos(0.7*cnst))**2;
+        
+      }
+      if (clock.getElapsedTime() >= 115) camera.rotation.y = Math.PI * 0.25 + (Math.sin(0.2*cnst))**2;   
+
+
+    }
  }
   
- updateSubtitles();
+  updateSubtitles();
+
   if ( camera.position.x < 8 ) {
    // console.log('camera at',camera.position.x);
-    camera.position.set(270, 5, 3); // original position
+    camera.position.set(270, 5, 3); 
     
   }
 
